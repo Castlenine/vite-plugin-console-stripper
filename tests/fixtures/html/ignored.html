@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- console-stripper-ignore -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Ignored page</title>
+	</head>
+	<body>
+		<script type="module">
+			console.log('PROTECTED_IGNORED_MODULE');
+			window.ignoredReady = true;
+		</script>
+		<script>
+			console.log('PROTECTED_IGNORED_CLASSIC');
+		</script>
+	</body>
+</html>

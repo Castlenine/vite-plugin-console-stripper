@@ -1,0 +1,23 @@
+---
+// console-stripper-ignore-next-line
+console.log('protected frontmatter');
+console.log('stripped frontmatter');
+/* console-stripper-ignore-start */
+console.debug('protected block');
+/* console-stripper-ignore-end */
+const tag = `<script>console.log('frontmatter template')</script>`;
+---
+<p>{console.log('stripped template')}</p>
+{/* console-stripper-ignore-next-line */}
+<p>{console.log('protected template')}</p>
+<script is:inline>
+	console.log(`inline ${tag}\\`);
+	console.info('kept inline');
+	// console-stripper-ignore-next-line
+	console.log('protected inline');
+</script>
+<script is:inline define:vars={{ tag }}>
+	console.log('define:vars', tag);
+</script>
+<script is:inline type="application/json">{"console.log(1)": 1}</script>
+{tag && <script is:inline>console.log('nested')</script>}

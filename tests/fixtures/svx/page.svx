@@ -1,0 +1,11 @@
+---
+title: console.log('FRONT_MATTER_TEXT')
+---
+
+<script>
+	console.log('STRIP_SVX_SCRIPT');
+	console.warn('KEEP_SVX_SCRIPT_WARN');
+	export const ready = true;
+</script>
+
+# Call console.log(text) to debug

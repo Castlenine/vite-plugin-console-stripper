@@ -1,0 +1,44 @@
+---
+const title: string = 'Astro page';
+
+console.log('STRIP_ASTRO_FRONTMATTER');
+console.warn('KEEP_ASTRO_FRONTMATTER_WARN');
+// console-stripper-ignore-next-line
+console.log('PROTECTED_ASTRO_FRONTMATTER');
+/* console-stripper-ignore-start */
+console.log('PROTECTED_ASTRO_FRONTMATTER_BLOCK');
+/* console-stripper-ignore-end */
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<h1>{title}</h1>
+		<p>Use console.log(text) to debug</p>
+		<p data-strip-template>{console.log('STRIP_ASTRO_TEMPLATE')}</p>
+		{/* console-stripper-ignore-next-line */}
+		<p>{console.log('PROTECTED_ASTRO_TEMPLATE')}</p>
+		<button id="action">Act</button>
+		<script>
+			console.log('STRIP_ASTRO_SCRIPT');
+			console.error('KEEP_ASTRO_SCRIPT_ERROR');
+			document.getElementById('action')?.addEventListener('click', () => console.debug('STRIP_ASTRO_CLICK'));
+		</script>
+		<script is:inline>
+			console.log('STRIP_ASTRO_INLINE');
+			console.info('KEEP_ASTRO_INLINE_INFO');
+			console.log(`STRIP_ASTRO_INLINE_TEMPLATE ${document.title}`);
+			const INLINE_PATH = 'C:\\inline';
+			// console-stripper-ignore-next-line
+			console.log('PROTECTED_ASTRO_INLINE');
+		</script>
+		<!-- console-stripper-ignore-start -->
+		<p>{title}</p>
+		<script is:inline>console.log('PROTECTED_ASTRO_INLINE_RANGE');</script>
+		<!-- console-stripper-ignore-end -->
+		<script is:inline>console.log('STRIP_ASTRO_INLINE_AFTER_RANGE');</script>
+	</body>
+</html>
