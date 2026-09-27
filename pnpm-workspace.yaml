@@ -1,0 +1,17 @@
+publishBranch: master
+# Fail installs when Node or dependency engines are incompatible with the current runtime.
+engineStrict: true
+# Never auto-install before `pnpm run` — the implicit install is destructive in non-TTY
+# consumers (CI, git hooks, scripts): it can abort mid-purge and leave node_modules gutted.
+verifyDepsBeforeRun: false
+# This setting acts as a security precaution by postponing the installation of newly published package versions. Delaying installations helps reduce the risk of compromised packages,
+# as most malicious releases are typically identified and removed from the registry within an hour.
+minimumReleaseAge: 2880 # 2 days (1 day by default)
+allowBuilds:
+  # The Angular toolchain (integration tests) pulls native watchers/stores whose prebuilt binaries ship as optional dependencies — their build scripts are not needed
+  '@parcel/watcher': false
+  # Astro (integration tests) pulls esbuild, whose platform binary ships as an optional dependency — its postinstall is not needed
+  esbuild: false
+  lefthook: true
+  lmdb: false
+  msgpackr-extract: false

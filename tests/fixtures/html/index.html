@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>console.log(title) stays</title>
+		<script type="importmap">
+			{ "imports": { "console.log(": "./console.log(.js" } }
+		</script>
+		<script type="application/ld+json">
+			{ "@context": "https://schema.org", "name": "console.log('LD_JSON_TEXT')" }
+		</script>
+		<script type="text/template" id="row">
+			<li>console.log('TEMPLATE_TEXT')</li>
+		</script>
+		<script type="module" src="./entry.js"></script>
+	</head>
+	<body>
+		<p>Use console.log(debugValue) to debug</p>
+		<button onclick="console.log('ATTRIBUTE_HANDLER')">Click</button>
+		<script type="module">
+			console.log('STRIP_HTML_MODULE');
+			console.warn('KEEP_HTML_MODULE_WARN');
+			// console-stripper-ignore-next-line
+			console.log('PROTECTED_HTML_MODULE_NEXT_LINE');
+			window.moduleReady = true;
+		</script>
+		<!-- console-stripper-ignore-start -->
+		<script type="module">
+			console.log('PROTECTED_HTML_MODULE_BLOCK');
+			window.protectedReady = true;
+		</script>
+		<!-- console-stripper-ignore-end -->
+		<script>
+			console.debug('STRIP_HTML_CLASSIC');
+			console.error('KEEP_HTML_CLASSIC_ERROR');
+			// console-stripper-ignore-next-line
+			console.log('PROTECTED_HTML_CLASSIC');
+		</script>
+	</body>
+</html>
