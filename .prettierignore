@@ -1,0 +1,88 @@
+# Node modules
+node_modules/
+
+# Build output
+/dist/
+
+# Vite
+/vite.config.js.timestamp-*
+/vite.config.ts.timestamp-*
+
+# Test results & coverage
+/coverage/
+/test-results-vitest/
+/.vitest-attachments/
+/.vitest/
+
+# Logs
+*-debug.log
+*.log
+*.log-*
+*.log.*
+*.logs
+/logs/
+
+# Backup & local files
+*.backup
+*.backup.*
+*.bak
+*.bak.*
+*.local
+*.local.*
+*.local-backup
+*.local-backup.*
+/local-files/
+
+# OS generated files
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# Lock files (pnpm lockfile stays committed but unformatted)
+/pnpm-lock.yaml
+
+# PNPM store
+/.pnpm-store/
+
+# Integration-test inputs: exact bytes the assertions depend on
+/tests/fixtures/
+
+# Not parsable files
+.czrc
+.gitignore
+.nvmrc
+.prettierignore
+
+# Binary/archive types
+*.7z
+*.gz
+*.rar
+*.tar
+*.tgz
+*.wasm
+*.zip
+
+# Documents
+*.conf
+*.doc
+*.docx
+*.fig
+*.pdf
+*.txt
+
+# Images/media
+*.gif
+*.ico
+*.jpeg
+*.jpg
+*.png
+*.webp
+
+# Markup, markdown, code docs
+*.md
+*.mdc
+*.mdx
+
+# License
+LICENSE

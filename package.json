@@ -1,0 +1,178 @@
+{
+  "name": "@castlenine/vite-plugin-console-stripper",
+  "version": "0.1.0",
+  "description": "A Vite plugin that removes console calls from your production build and keeps the ones you still need (by default console.error, console.warn, console.info and console.clear). It works on your own code and on dependencies, and supports ignore comments, path ignore rules, composable extension presets and sourcemaps.",
+  "license": "MIT",
+  "keywords": [
+    "analog",
+    "angular",
+    "astro",
+    "build",
+    "console",
+    "console-log",
+    "console.log",
+    "debug",
+    "drop-console",
+    "drop_console",
+    "logging",
+    "mdx",
+    "plugin",
+    "preact",
+    "production",
+    "react",
+    "reactjs",
+    "remove-console",
+    "remove-console-log",
+    "solid",
+    "solidjs",
+    "sourcemap",
+    "strip",
+    "strip-console",
+    "strip-console-log",
+    "svelte",
+    "sveltekit",
+    "transform-remove-console",
+    "typescript",
+    "vite",
+    "vite-plugin",
+    "vitejs",
+    "vue",
+    "vuejs"
+  ],
+  "author": {
+    "name": "Alex Castlenine",
+    "url": "https://github.com/Castlenine"
+  },
+  "homepage": "https://github.com/Castlenine/vite-plugin-console-stripper",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Castlenine/vite-plugin-console-stripper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Castlenine/vite-plugin-console-stripper/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.cts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "pnpm remove-dist-folder && vite build",
+    "package": "pnpm build && publint && pnpm attw",
+    "attw": "rimraf node_modules/.cache/attw && pnpm pack --ignore-scripts --pack-destination node_modules/.cache/attw && attw node_modules/.cache/attw/*.tgz",
+    "prepublishOnly": "pnpm package",
+    "publish-package": "pnpm publish",
+    "test": "vitest run --project unit",
+    "test:watch": "vitest --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "lint:staged": "eslint",
+    "lint:staged:fix": "eslint --fix --no-warn-ignored",
+    "lint:ci": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:staged": "prettier --write",
+    "markdownlint": "markdownlint-cli2 \"**/*.md\"",
+    "markdownlint:fix": "markdownlint-cli2 --fix \"**/*.md\"",
+    "markdownlint:staged:fix": "markdownlint-cli2 --fix",
+    "clean-code": "pnpm format && pnpm lint:fix && pnpm markdownlint:fix",
+    "commit": "git status && git-cz",
+    "remove-dist-folder": "rimraf dist",
+    "update-packages": "ncu --interactive",
+    "update-packages:minor": "ncu --target minor --interactive",
+    "update-packages:patch": "ncu --target patch --interactive"
+  },
+  "peerDependencies": {
+    "vite": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.7.5",
+    "@angular/build": "^22.2.0",
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/compiler-cli": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@babel/core": "^7.29.7",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@commitlint/cz-commitlint": "^21.2.3",
+    "@commitlint/types": "^21.2.3",
+    "@eslint/js": "^10.0.1",
+    "@fast-check/vitest": "^0.5.0",
+    "@jridgewell/remapping": "^2.3.5",
+    "@jridgewell/trace-mapping": "^0.3.31",
+    "@preact/preset-vite": "^2.10.6",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@types/node": "^26.6.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vitest/coverage-v8": "^5.0.2",
+    "astro": "^7.3.5",
+    "commitizen": "^4.3.2",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-perfectionist": "^5.12.1",
+    "eslint-plugin-security": "^4.0.1",
+    "eslint-plugin-sonarjs": "^4.2.1",
+    "globals": "^17.12.0",
+    "jiti": "^2.7.0",
+    "lefthook": "^2.1.14",
+    "lint-staged": "^17.5.1",
+    "markdownlint-cli2": "^0.23.3",
+    "npm-check-updates": "^23.1.0",
+    "preact": "^10.29.8",
+    "prettier": "^3.9.9",
+    "publint": "^0.3.24",
+    "rimraf": "^6.1.3",
+    "rxjs": "^7.8.2",
+    "solid-js": "^1.9.15",
+    "svelte": "^5.57.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.1",
+    "vite-plugin-dts": "^5.1.1",
+    "vite-plugin-solid": "^2.11.14",
+    "vitest": "^5.0.2",
+    "vue": "^3.5.43"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.15.0 || >=26.0.0",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=11.0.0",
+      "onFail": "error"
+    }
+  }
+}

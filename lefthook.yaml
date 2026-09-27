@@ -1,0 +1,33 @@
+# Lefthook configuration file
+#
+# Refer for explanation to following link:
+# https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+
+commit-msg:
+  parallel: false # Run all hooks in serial mode
+  commands:
+    commit-message-check:
+      # Validate the commit message against .commitlintrc.ts. Path is quoted:
+      # a linked worktree receives an absolute path that may contain spaces.
+      run: pnpm exec commitlint --config ./.commitlintrc.ts --edit "{1}"
+
+pre-commit:
+  parallel: false # Run all hooks in serial mode
+  commands:
+    universal-checks:
+      priority: 1
+      # Runs lint-staged on staged files only (eslint --fix + prettier + markdownlint --fix).
+      # Sequential so partially staged files are handled safely.
+      run: pnpm exec lint-staged --config .lintstagedrc.json --concurrent false
+
+    ggshield:
+      priority: 2
+      # Scan staged files for secrets using GitGuardian's ggshield. Optional: when
+      # the binary is missing, warn and let the commit proceed instead of failing.
+      run: |
+        if command -v ggshield >/dev/null 2>&1; then
+          ggshield secret scan pre-commit
+        else
+          echo "WARNING: Cannot run ggshield (not installed). Install it to scan staged files for secrets: https://docs.gitguardian.com/ggshield-docs/getting-started" >&2
+        fi
